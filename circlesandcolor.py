@@ -52,12 +52,14 @@ npimage = np.array(image)/255.0
 #︶⊹︶︶୨୧︶︶⊹︶︶⊹︶︶୨୧︶︶⊹︶︶⊹︶︶୨୧︶︶⊹︶︶⊹︶︶୨୧︶︶⊹︶︶⊹︶︶୨୧︶︶⊹︶︶⊹︶︶୨୧︶︶⊹︶︶⊹︶︶୨୧︶︶⊹︶#
 
 #Animation Parameters
-def animate(frame, ax, npimage, canvas):
-    width, height, _ = npimage.shape
+def animate(self, frame, ax, canvas):
+    height, width, _ = self.npimage.shape
+    ax.set_aspect(width/height)
 
-    # Set limits according to the image size
-    #ax.set_xlim(0, width) #Doesn't work, keep just in case
-    #ax.set_ylim(0, height)
+    ax.set_xlim(0, width)  # Maybe adjust limits to fit resized image??
+    ax.set_ylim(0, height)
+
+  
 
     for _ in range(600):
         w = np.random.randint(0, width)

@@ -23,6 +23,9 @@ class MainWindow(QMainWindow):
         super().__init__()        
         self.setWindowTitle("୨୧ Tech Foundations II - Homework 2 ୨୧")
         self.setFixedSize(1000,600)
+        filename= None
+        image = None
+        circlesandcolor.npimage = None
 
         central_widget = QWidget(self)
         self.setCentralWidget(central_widget)
@@ -78,11 +81,21 @@ class MainWindow(QMainWindow):
         print("Starting to Generate Geometry ⁺ . ✦")
         self.figure.clear() 
 
-        ax = self.figure.add_subplot(111)
-        ax.set_xlim(0, 100)  # Maybe adjust limits to fit resized image??
-        ax.set_ylim(0, 100)
+        self.figure.tight_layout(pad=0)
+        self.figure.subplots_adjust(left=0, right=1, top=1, bottom=0)
 
-        self.animation = circlesandcolor.main(ax, self.canvas) 
+        ax = self.figure.add_subplot(111)
+
+        def init(self):
+            return []
+
+        anim = FuncAnimation(ax.figure, self.animation, init_func=self.init,
+                fargs=(ax, self.canvas),
+                frames=circlesandcolor.num_frames, interval=0,
+                blit=False, repeat=False)
+        
+        
+        
         self.canvas.draw()
 
     #Definition of stop_animation
